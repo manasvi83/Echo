@@ -1,4 +1,4 @@
-# Chat App
+# Echo
 
 Welcome to the Chat App! This application allows users to log in, chat with friends, and manage shared expenses using a modern tech stack.
 
