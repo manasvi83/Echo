@@ -1,21 +1,30 @@
-// import useGetConversations from "../../hooks/useGetConversations";
-// import { getRandomEmoji } from "../../utils/emojis.js";
+import useGetConversations from "../../hooks/useGetConversations.js";
 import Conversation from "./Conversation.jsx";
 
 const Conversations = () => {
-	// const { loading, conversations } = useGetConversations();
+	const {conversations } = useGetConversations();
+	console.log("CONVERSATIONS:",conversations );
 	return (
-		<div className='py-2 flex flex-col overflow-auto'>
-			{/* {conversations.map((conversation, idx) => ( */}
-				<Conversation/>
-					{/* // key={conversation._id}
-					// conversation={conversation}
-					// emoji={getRandomEmoji()}
-					// lastIdx={idx === conversations.length - 1} */}
+		<div className='w-full p-2 mt-4 mb-6 overflow-y-scroll hide-scrollbar justify-center'>
+                {/* <Conversation />
+                <Conversation />
+                <Conversation />
+                <Conversation />
+                <Conversation />
+                <Conversation />
+                <Conversation />
+                <Conversation />
+                <Conversation />
+                <Conversation /> */}
 				
-			{/* ))} */}
+			{conversations.map((conversation, idx) => (
+				<Conversation
+					key={conversation._id}
+					conversation={conversation}
+					lastIdx={idx === conversations.length - 1}
+				/>
+			))}
 
-			{loading ? <span className='loading loading-spinner mx-auto'></span> : null}
 		</div>
 	);
 };

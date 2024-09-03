@@ -1,26 +1,28 @@
-const Conversation = () => {
+import React from 'react'
+import useConversation from '../../zustand/useConversation.js';
+
+const Conversation = ({ conversation, lastIdx, emoji }) => {
+	const { selectedConversation, setSelectedConversation } = useConversation();
+
+    const isSelected = selectedConversation?._id === conversation._id;
     return (
         <>
-            <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'>
-                <div className='avatar online'>
-                    <div className='w-12 rounded-full'>
-                        <img
-                            src='https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png'
-                            alt='user avatar'
-                        />
-                    </div>
-                </div>
-
-                <div className='flex flex-col flex-1'>
-                    <div className='flex gap-3 justify-between'>
-                        <p className='font-bold text-gray-200'>John Doe</p>
-                        <span className='text-xl'>🎃</span>
-                    </div>
-                </div>
+        <div className={`indicator flex items-center my-8 gap-2 w-full ${isSelected ? "bg-sky-800 rounded-lg h-12 p-2 " : ""}`} onClick={() => setSelectedConversation(conversation)}>
+            <div className='w-8 rounded-full '>
+            <span className="indicator-item indicator-bottom indicator-start  scale-x-50 scale-y-50 indicator-item-xs badge badge-success" ></span>
+                <img
+                    src={conversation.avatar}
+                    alt='user avatar'
+                    
+                />
             </div>
-
-            <div className='divider my-0 py-0 h-1' />
+            <div >
+                <h4 className="text-md mx-4 font-semibold">{conversation.fullName}</h4>
+            </div>
+            
+        </div>
         </>
-    );
-};
-export default Conversation;
+    )
+}
+
+export default Conversation
